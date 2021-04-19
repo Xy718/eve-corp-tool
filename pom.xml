@@ -3,16 +3,45 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>xyz.xy718</groupId>
-    <artifactId>EVECropTool</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>eve-corp-tool</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
 
     <properties>
+        <revision>0.0.1</revision>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+
         <lombok.version>1.18.18</lombok.version>
         <hutool.all.version>5.6.2</hutool.all.version>
+        <!-- Spring Cloud -->
+        <spring.cloud.version>Hoxton.SR9</spring.cloud.version>
+<!--        dependencies version-->
+        <application.depend.ver>0.0.1</application.depend.ver>
+
+        <nacos.discovery.version>2.2.5.RELEASE</nacos.discovery.version>
+        <nacos.config.version>2.2.5.RELEASE</nacos.config.version>
+
+
+        <springboot.version>2.2.6.RELEASE</springboot.version>
+        <springcloud.version>Hoxton.SR9</springcloud.version>
+        <springcloud-alibaba.version>2.2.5.RELEASE</springcloud-alibaba.version>
     </properties>
+
+    <modules>
+        <module>common</module>
+        <module>application</module>
+        <module>support-middleware</module>
+    </modules>
+
+
     <dependencies>
+        <dependency>
+            <groupId>xyz.xy718.ect</groupId>
+            <artifactId>common</artifactId>
+            <version>${revision}</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -25,4 +54,31 @@
             <version>${hutool.all.version}</version>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${springcloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${springcloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 </project>

@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: app-authority
+  cloud:
+    nacos:
+      config:
+        group: DEFAULT_GROUP
+        server-addr: ${nacos-server-addr:localhost:8848}
+        file-extension: properties
+        prefix: ect-${spring.application.name}-${spring.profiles.active}
+        extension-configs:
+          - dataId: ect-datasource-${spring.profiles.active}.properties
+            group: DEFAULT_GROUP
+            refresh: true
+      discovery:
+        server-addr: ${nacos-server-addr:localhost:8848}
+      password: nacos
+      username: nacos
+  profiles:
+    active: dev
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
